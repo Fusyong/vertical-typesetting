@@ -7,6 +7,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 # ah21
+vertical-typesetting.code-workspace
 test.log
 test.tuc
 test.pdf
