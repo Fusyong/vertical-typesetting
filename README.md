@@ -8,7 +8,7 @@
 
 ## 现状
 
-![xz](img/README/2022-02-13-18-50-41.png)
+![xz](https://github.com/Fusyong/vertical-typesetting/blob/master/img/README/2022-02-13-18-50-41.png)
 
 ## TODO 
 
