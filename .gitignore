@@ -1,0 +1,22 @@
+# System and IDE files
+Thumbs.db
+.DS_Store
+.idea
+.vscode
+*.suo
+*.sublime-project
+*.sublime-workspace
+# ah21
+test.log
+test.tuc
+test.pdf
+test.lmtx
+zhfonts/*.*
+
+# Vendors
+node_modules/
+
+# Build
+/npm-debug.log
+build/
+out/
