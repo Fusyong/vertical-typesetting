@@ -8,8 +8,8 @@ Thumbs.db
 *.sublime-workspace
 # ah21
 vertical-typesetting.code-workspace
-test.log
-test.tuc
+*.log
+*.tuc
 test.pdf
 test.lmtx
 zhfonts/
