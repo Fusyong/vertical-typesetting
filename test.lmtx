@@ -1,0 +1,4 @@
+\usemodule[zhfonts]
+\starttext
+测试 English 与中文。
+\stoptext

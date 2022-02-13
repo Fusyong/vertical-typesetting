@@ -1,0 +1,105 @@
+\setuppapersize[A5]
+
+% 中文配置
+\mainlanguage[cn]
+\language[cn]
+\setscript[hanzi] % 汉字脚本（断行）
+\setupalign[hanging] %行末标点悬挂
+
+% 汉字字体配置
+\usetypescriptfile[mscore]
+\usebodyfont   [mschinese,12pt]
+% \usebodyfont   [mschinese-light,12pt]
+% \setupbodyfont [mschinese-literate,12pt]
+% \usebodyfont   [mschinese-literate,12pt]
+% \definebodyfontenvironment[24pt]
+% \definebodyfontenvironment[18pt]
+% 定义字体
+% \definefont[kaiti][name:kaiti*default at 24pt]
+
+% 配置页码、结构序号等为汉字
+\setuppagenumber [numberconversion=cn]
+\definestructureconversionset[chinese][numbers][cn]
+\setupheads [sectionconversionset=chinese]
+
+% 配置章节格式
+\define[2]\ChineseChapter{第#1章\hskip 1em #2}
+\setuphead[chapter][command=\ChineseChapter,style={\bf\switchtobodyfont[24pt]}]
+\setuphead[section][style={\bf\switchtobodyfont[18pt]}]
+
+% 设置页码格式
+\setuppagenumbering[state=start,
+    alternative=singlesided,
+    location={footer, center},
+    style={\bf\switchtobodyfont[11pt]}
+]
+
+% 行距
+\setupinterlinespace[line=2em]
+
+% 使用系统中安装的中文标点压缩模块
+% \usemodule[zhspuncs]
+\usemodule[zhfonts]
+
+%%%%%%%%%%%%% 回调模块 %%%%%%%%%%%%%
+\startluacode
+
+-- 使用直排模块
+require("vertical_typeset.lua")
+vertical_typeset.opt()
+
+-- 使用本地中文标点压缩模块
+require("zhfonts/t-zhspuncs.lua")
+--zhspuncs.opt()
+
+\stopluacode
+
+%%%%% 显式视觉调试信息 %%%%
+% \showboxes
+% \showmakeup
+% \showframe
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\starttext
+
+% % 结点数据试验
+% \setbox0\hbox{，}
+% \startluacode
+% context(tex.box[0])
+% print(nodes.toutf(tex.box[0]))
+% print(tex.box[0]) -- hlist box
+% print(tex.box[0].list) --hlist unknown # 由旋转插件生成
+% if tex.box[0].list.list then
+%     print(tex.box[0].list.list) --glyph unset
+%     print(tex.box[0].list.list.data) --glyph结点的用户数据（标记）
+% end
+% \stopluacode
+
+% ，，
+
+% \hbox{，}
+
+% 、
+% 。
+% ．
+% ？
+% ！
+% ：
+% ；
+
+% 我，我
+
+% 我，，我
+
+% 我，，，我
+
+% 国““‘‘’’””
+
+\chapter{屠龙之技}
+
+\dorecurse{20}{%
+《〈庄子〉寓言故事》：『朱泙(pēng)漫学屠龙于支离益，殚(dān)千金之家。三年技成，而无所用其巧！！』{\itxx （——《庄子·列御寇》， p125, f.f.）}【注释】（一）朱、支谐音；泙漫与离益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
+}
+
+\stoptext
+

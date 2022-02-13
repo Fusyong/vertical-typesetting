@@ -1,0 +1,26 @@
+%D \module
+%D   [     file=t-zhspuncs,
+%D      version=2022-02-10,
+%D        title=\CONTEXT\ User Module,
+%D     subtitle=zhspuncs,
+%D       author=Huang Fusyong,
+%D         date=\currentdate,
+%D    copyright=Huang Fusyong,
+%D        email=aahuaang@gmail.com,
+%D      license=Public Domain]
+
+\writestatus{loading}{ConTeXt User Module / zhspuncs}
+\startmodule[zhspuncs]
+\unprotect
+
+% 加载lua脚本文件t-zhspuncs.mkiv
+\ctxloadluafile{t-zhspuncs}
+% 宏定义
+\def\zhspuncs{\ctxlua{moduledata.zhspuncs.opt()}}
+% 宏的加载点
+\appendtoks \zhspuncs \to \everystarttext
+
+\protect
+\stopmodule
+\endinput
+
