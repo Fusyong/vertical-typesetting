@@ -11,7 +11,7 @@ test.log
 test.tuc
 test.pdf
 test.lmtx
-zhfonts/*.*
+zhfonts/
 
 # Vendors
 node_modules/
