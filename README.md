@@ -6,9 +6,23 @@
 1. vertical_typeset.lua是直排插件，目前通过vtypesetting_callback.lmtx示例文档来使用
 1. vtypesetting_box.lmtx是早期的功能探索示例文档，参见说明[ConTeXt LMTX的汉字竖排思路](htttps://blog.xiiigame.com/2022-01-14-ConTeXt%20LMTX的汉字竖排思路/)
 
+## 运行
+
+仅在[ConTeXt LMTX](https://wiki.contextgarden.net/Installation)环境测试，其他版本的ConTeXt当不支持。ConTeXt LMTX是与LuaMetaTeX(LuaTeX的后继者)配合使用的ConTeXt版本。
+
+使用`context --version && luametatex --version`命令查看你的环境版本。
+
+解释实例文档：
+
+`context vtypesetting_callback.lmtx`
+
+`context vtypesetting_box.lmtx`
+
+如果控制台显示中文时有乱码，可用命令改变代码页：`chcp 65001`
+
 ## 现状
 
-![xz](https://github.com/Fusyong/vertical-typesetting/blob/46efdef93eef29619597d1528c2851ae3b252e8d/img/README/2022-02-13-18-50-41.png)
+![xz](https://github.com/Fusyong/vertical-typesetting/blob/46efdef93eef29619597d1528c2851ae3b252e8d/img/README/2022-02-13-18-50-41.png?raw=true)
 
 ## TODO 
 
