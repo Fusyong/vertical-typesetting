@@ -2,7 +2,7 @@
 
 ## 内容
 
-1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目中的文件到根目录下（使文件夹`zhfonts`在项目根文件夹`vertical-typesetting`下）；[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，谨致谢忱！
+1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目与本项目，并排放置两个项目文件夹（`zhfonts` `vertical-typesetting`下）。[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，以支持直排标点压缩，谨致谢忱！
 1. vertical_typeset.lua是直排插件，目前通过vtypesetting_callback.lmtx示例文档来使用
 1. vtypesetting_box.lmtx是早期的功能探索示例文档，参见说明[ConTeXt LMTX的汉字竖排思路](htttps://blog.xiiigame.com/2022-01-14-ConTeXt%20LMTX的汉字竖排思路/)
 
