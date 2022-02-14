@@ -2,7 +2,7 @@
 
 ## 内容
 
-1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目中的文件到根目录下（zhfonts文件夹在根目录下）；[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，谨致谢忱！
+1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目中的文件到根目录下（使文件夹`zhfonts`在项目根文件夹`vertical-typesetting`下）；[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，谨致谢忱！
 1. vertical_typeset.lua是直排插件，目前通过vtypesetting_callback.lmtx示例文档来使用
 1. vtypesetting_box.lmtx是早期的功能探索示例文档，参见说明[ConTeXt LMTX的汉字竖排思路](htttps://blog.xiiigame.com/2022-01-14-ConTeXt%20LMTX的汉字竖排思路/)
 
@@ -12,11 +12,19 @@
 
 ## TODO 
 
-* 更改旋转对齐规则（“一”等字的问题）
-* 删除破折号、省略号紧止排在行头的规则
-* 夹注/割注
-* 注音
-* ……
+* [ ] 《标点符号用法》 5.2 竖排文稿标点符号的位置和书写形式
+    * [x] 5.2.1 句号、问号、叹号、逗号、顿号、分号和冒号均置于相应文字之下偏右。
+    * [x] 5.2.2 破折号、省略号、连接号、间隔号和分隔号置于相应文字之下居中,上下方向排列。
+    * [x] 5.2.3 引号改用双引号“﹃ ”“﹄ ”和单引号“﹁ ”“﹂ ”,括号改用“︵ ”“︶ ”,标在相应项目的上下。
+    * [ ] 5.2.4 竖排文稿中使用浪线式书名号“﹏”,标在相应文字的左侧。
+    * [ ] 5.2.5 着重号标在相应文字的右侧,专名号标在相应文字的左侧。
+    * [ ] 5.2.6 横排文稿中关于某些标点不能居行首或行末的要求,同样适用于竖排文稿。
+* [x] 字右、字左注音
+* [ ] 横排标点转竖排标点
+* [ ] 更改旋转对齐规则（解决“一、灬”等字的问题）
+* [ ] 删除破折号、省略号紧止排在行头的规则
+* [ ] 夹注/割注
+* [ ] ……
 
 <!-- 
 ## 参考资料
