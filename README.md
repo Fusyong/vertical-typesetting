@@ -22,7 +22,16 @@
 
 ## 现状
 
-![xz](https://github.com/Fusyong/vertical-typesetting/blob/46efdef93eef29619597d1528c2851ae3b252e8d/img/README/2022-02-13-18-50-41.png?raw=true)
+![xz](https://github.com/Fusyong/vertical-typesetting/blob/46efdef93eef29619597d1528c2851ae3b252e8d/img/README/2022-02-13-18-50-41.jpg?raw=true)
+
+![Alt text](img/README/2022-02-13-18-50-41.jpg?raw=true "Title")
+
+![plot](./img/README/2022-02-13-18-50-41.png)
+
+<!-- 
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![plot](./directory_1/directory_2/.../directory_n/plot.png) -->
 
 ## TODO 
 
