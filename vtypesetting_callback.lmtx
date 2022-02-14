@@ -4,7 +4,7 @@
 \mainlanguage[cn]
 \language[cn]
 \setscript[hanzi] % 汉字脚本（断行）
-\setupalign[hanging] %行末标点悬挂
+\setupalign[hanging,hz] %行末标点悬挂
 
 % 汉字字体配置
 \usetypescriptfile[mscore]
@@ -37,9 +37,13 @@
 % 行距
 \setupinterlinespace[line=2em]
 
-% 使用系统中安装的中文标点压缩模块
+%%%% 使用系统中安装的中文标点压缩模块 %%%%
+% %？？？未感受到旋转标点
 % \usemodule[zhspuncs]
-\usemodule[zhfonts]
+% % 扩展原有的字体特性default(后)为default(前)
+% \definefontfeature[default][default][protrusion=myvector]
+% % 或立即应用（只能一种字体？？注意脚本的引用时机）
+% \definedfont[Serif*default]
 
 %%%%%%%%%%%%% 回调模块 %%%%%%%%%%%%%
 \startluacode
@@ -48,9 +52,15 @@
 require("vertical_typeset.lua")
 vertical_typeset.opt()
 
+---[[
 -- 使用本地中文标点压缩模块
-require("zhfonts/t-zhspuncs.lua")
---zhspuncs.opt()
+require("../zhfonts/t-zhspuncs.lua")
+zhspuncs.opt()
+-- 扩展原有的字体特性default(后)为default(前)
+context.definefontfeature({"default"},{"default"},{protrusion="myvector"})
+-- 在字体定义中应用或立即应用（只能一种字体？？注意脚本的引用时机）
+context.definedfont({"Serif*default"})
+--]]
 
 \stopluacode
 
