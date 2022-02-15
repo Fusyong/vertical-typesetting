@@ -27,7 +27,9 @@
 
 ## 现状
 
-![plot](./img/README/2022-02-13-18-50-41.png)
+![plot](https://blog.xiiigame.com/img/2022-02-15-ConTeXt-LMTX中文竖排插件/vtypesetting_callback_2.jpg)
+
+![plot](https://blog.xiiigame.com/img/2022-02-15-ConTeXt-LMTX中文竖排插件/vtypesetting_callback_1.jpg)
 
 <!-- 
 ![xz](https://github.com/Fusyong/vertical-typesetting/blob/46efdef93eef29619597d1528c2851ae3b252e8d/img/README/image.jpg?raw=true)
@@ -51,6 +53,7 @@
 * [ ] 更改旋转对齐规则（解决“一、灬”等字的问题）
 * [ ] 删除破折号、省略号禁止排在行头的规则
 * [ ] 夹注/割注
+* [ ] 使PDF文件拷贝后的文字分行、分段正确
 * [ ] ……
 
 <!-- 
