@@ -8,15 +8,16 @@
 
 ## 运行
 
-仅在[ConTeXt LMTX](https://wiki.contextgarden.net/Installation)环境测试，其他版本的ConTeXt当不支持。ConTeXt LMTX是与LuaMetaTeX(LuaTeX的后继者)配合使用的ConTeXt版本。
+仅在[ConTeXt LMTX](https://wiki.contextgarden.net/Installation)环境测试，其他版本的ConTeXt当不支持。ConTeXt LMTX是与LuaMetaTeX(LuaTeX的后继者)配合使用的、最新的ConTeXt版本。
 
-使用`context --version && luametatex --version`命令查看你的环境版本。
+可以使用`context --version && luametatex --version`命令查看你的环境版本。
 
-解释实例文档：
+如下解释实例文档：
 
-`context vtypesetting_callback.lmtx`
-
-`context vtypesetting_box.lmtx`
+```shell
+> context vtypesetting_callback.lmtx
+> context vtypesetting_box.lmtx
+```
 
 如果控制台显示中文时有乱码，可用命令改变代码页：`chcp 65001`
 
