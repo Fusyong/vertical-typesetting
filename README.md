@@ -2,8 +2,8 @@
 
 ## 内容
 
-1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目与本项目，并排放置两个项目文件夹（`zhfonts` `vertical-typesetting`下）。[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，以支持直排标点压缩，谨致谢忱！
-1. vertical_typeset.lua是直排插件，目前通过vtypesetting_callback.lmtx示例文档来使用
+1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目与本项目，并排放置两个项目文件夹（`zhfonts` `vertical-typesetting`下）。[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，以支持竖排/直书标点压缩，谨致谢忱！
+1. vertical_typeset.lua是竖排/直书插件，目前通过vtypesetting_callback.lmtx示例文档来使用
 1. vtypesetting_box.lmtx是早期的功能探索示例文档，参见说明[ConTeXt LMTX的汉字竖排思路](htttps://blog.xiiigame.com/2022-01-14-ConTeXt%20LMTX的汉字竖排思路/)
 
 ## 运行
@@ -47,9 +47,9 @@
     * [ ] 5.2.5 着重号标在相应文字的右侧,专名号标在相应文字的左侧。
     * [ ] 5.2.6 横排文稿中关于某些标点不能居行首或行末的要求,同样适用于竖排文稿。
 * [x] 字右、字左注音
-* [ ] 横排标点转竖排标点
+* [ ] 横排标点替换为竖排标点
 * [ ] 更改旋转对齐规则（解决“一、灬”等字的问题）
-* [ ] 删除破折号、省略号紧止排在行头的规则
+* [ ] 删除破折号、省略号禁止排在行头的规则
 * [ ] 夹注/割注
 * [ ] ……
 
