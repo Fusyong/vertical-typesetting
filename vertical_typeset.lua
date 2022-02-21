@@ -37,6 +37,7 @@ function vertical_typeset.processmystuff(head)
                 local w, h, d, t = n.width, n.height, n.depth, n.total
                 if p_to_rotate then
                     -- 给盒子设置资产表，携带字符char TODO 删除l.list.data = 10000
+                    --l. = {}
                     local p = node.getproperty(l)
                     if not p then
                         p = {}
