@@ -8,7 +8,6 @@
 %     height=250mm
 % ]
 
-% 根据 https://wiki.contextgarden.net/Chinese_Japanese_and_Korean
 \mainlanguage[cn]
 \language[cn]
 \enableregime[utf]

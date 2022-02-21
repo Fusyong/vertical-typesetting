@@ -63,44 +63,35 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \starttext
 
-% % 结点数据试验
-% \setbox0\hbox{，}
-% \startluacode
-% context(tex.box[0])
-% print(nodes.toutf(tex.box[0]))
-% print(tex.box[0]) -- hlist box
-% print(tex.box[0].list) --hlist unknown # 由旋转插件生成
-% if tex.box[0].list.list then
-%     print(tex.box[0].list.list) --glyph unset
-%     print(tex.box[0].list.list.data) --glyph结点的用户数据（标记）
-% end
-% \stopluacode
-
-% ，，
-
-% \hbox{，}
-
-% 、
-% 。
-% ．
-% ？
-% ！
-% ：
-% ；
-
-% 我，我
-
-% 我，，我
-
-% 我，，，我
-
-% 国““‘‘’’””
-
 \chapter{屠龙之技}
 
 \dorecurse{20}{%
 《〈庄子〉寓言故事》：『朱泙(pēng)漫学屠龙于支离益，殚(dān)千金之家。三年技成，而无所用其巧！！』{\itxx （——《庄子·列御寇》， p125, f.f.）}【注释】（一）朱、支谐音；泙漫与离益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 结点数据试验
+\setbox0\hbox{，}
+\startluacode
+context(tex.box[0])
+print(nodes.toutf(tex.box[0]))
+print(tex.box[0]) -- hlist box
+print(tex.box[0].list) --hlist unknown # 由旋转插件生成
+if tex.box[0].list.list then
+    print(tex.box[0].list.list) --glyph unset
+    print(tex.box[0].list.list.data) --glyph结点的用户数据（标记）
+    print(tex.box[0].list.list.attr) --glyph结点的用户数据（标记）
+    print("-----------")
+    print(node.getproperty(tex.box[0].list.list)) --glyph结点的用户数据（标记）
+    for i, v in pairs(node.getproperty(tex.box[0].list.list)) do
+        print(i,v)
+    end
+    print(tex.box[0].list.list.attr.next) --glyph结点的用户数据（标记）
+    print(tex.box[0].list.list.attr.next.number) --glyph结点的用户数据（标记）
+    print(tex.box[0].list.list.attr.next.value) --glyph结点的用户数据（标记）
+end
+\stopluacode
 
 \stoptext
 
