@@ -1,3 +1,9 @@
+<!-- 
+* D:\venvs\texlive\2021\bin\win32\luatex
+* D:\venvs\texlive\2021\bin\win32\lualatex
+* D:\venvs\texlive\2021\bin\win32\context
+ -->
+
 个人学习ConTeXt lmtx 与 LuaTEX，尝试实现中文竖排/直书功能
 
 ## 内容
