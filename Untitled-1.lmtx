@@ -1,0 +1,70 @@
+\setuppapersize[A5]
+
+% 中文配置
+\mainlanguage[cn]
+\language[cn]
+\setscript[hanzi] % 汉字脚本（断行）
+\setupalign[hanging,hz] %行末标点悬挂
+
+% 汉字字体配置
+\usetypescriptfile[mscore]
+\usebodyfont   [mschinese,20pt]
+% \usebodyfont   [mschinese-light,12pt]
+% \setupbodyfont [mschinese-literate,12pt]
+% \usebodyfont   [mschinese-literate,12pt]
+% \definebodyfontenvironment[24pt]
+% \definebodyfontenvironment[18pt]
+% 定义字体
+% \definefont[kaiti][name:kaiti*default at 24pt]
+
+% 配置页码、结构序号等为汉字
+\setuppagenumber [numberconversion=cn]
+\definestructureconversionset[chinese][numbers][cn]
+\setupheads [sectionconversionset=chinese]
+
+% 配置章节格式
+\define[2]\ChineseChapter{第#1章\hskip 1em #2}
+\setuphead[chapter][command=\ChineseChapter,style={\bf\switchtobodyfont[24pt]}]
+\setuphead[section][style={\bf\switchtobodyfont[18pt]}]
+
+% 设置页码格式
+\setuppagenumbering[state=start,
+    alternative=singlesided,
+    % location={footer, center} ,
+    location={},
+    style={\bf\switchtobodyfont[11pt]}
+]
+
+% 行距
+\setupinterlinespace[line=2em]
+
+%%%% 使用系统中安装的中文标点压缩模块 %%%%
+% \usemodule[zhspuncs]
+
+%%%%%%%%%%%%% 回调模块 %%%%%%%%%%%%%
+\startluacode
+
+-- 使用直排模块
+local vertical_typeset = require("vertical_typeset.lua")
+vertical_typeset.opt()--moduledata.vertical_typese.opt()
+
+---[[
+-- 使用本地中文标点压缩模块
+local zhspuncs = require("../zhfonts/t-zhspuncs.lua")
+zhspuncs.opt() --moduledata.zhspuncs.opt()
+--]]
+
+\stopluacode
+
+%%%%% 显式视觉调试信息 %%%%
+% \showboxes
+% \showframe
+% \showmakeup
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\starttext
+
+\underbar{〈庄子〉寓言故事}
+
+\stoptext
+
