@@ -58,8 +58,8 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 % 竖排专名号
 \definebar[zhuanming][underbar][offset=-0.3, unit=em,rulethickness=0.3pt]
 % 竖排书名号
-\definebar[shuming][text=\lower\exheight\hbox{\infofont \rotate[rotation=-10]{\textasciitilde}}, repeat=yes, continue=yes]
-
+\definefont[tidebar][name:stsong*default at 5pt]
+\definebar[shuming][text=\lower\exheight\hbox{\tidebar\rotate[rotation=-10]{～\kern-0.3em}}, repeat=yes, continue=yes]
 
 %%%%% 显式视觉调试信息 %%%%
 % \showboxes

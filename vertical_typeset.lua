@@ -114,8 +114,8 @@ function Moduledata.vertical_typeset.get_out_bar(head)
         local n = head
         while n do
             if node_hasattribute(n, 1) then
-                print("=======================")
-                print(nodes.tosequence(n.head))
+                -- print("=======================")
+                -- print(nodes.tosequence(n.head))
                 local h_head = n.head
                 local t = node.tail(h_head)
                 while t do

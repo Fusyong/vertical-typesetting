@@ -55,8 +55,9 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 --]]
 
 \stopluacode
-
-\definebar[xbartwo][text=\lower\exheight\hbox{\infofont \rotate[rotation=-10]{\textasciitilde}}, repeat=yes, continue=yes]
+% \textasciitilde
+\definefont[tidebar][name:stsong*default at 5pt]
+\definebar[xbartwo][text=\lower\exheight\hbox{\tidebar\rotate[rotation=-10]{～\kern-0.3em}}, repeat=yes, continue=yes]
 
 %%%%% 显式视觉调试信息 %%%%
 % \showboxes
