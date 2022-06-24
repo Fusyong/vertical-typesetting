@@ -114,16 +114,18 @@ function Moduledata.vertical_typeset.get_out_bar(head)
         local n = head
         while n do
             if node_hasattribute(n, 1) then
+                print("=======================")
+                print(nodes.tosequence(n.head))
                 local h_head = n.head
                 local t = node.tail(h_head)
                 while t do
                     -- 画线rule和罚点
-                    if t.id == rule_id and t.prev.id == kern_id then
+                    if (t.id == rule_id or t.id == hlist_id) and t.prev.id == kern_id then
                         local kern
-                        local rule
+                        local rule_or_hlist
                         h_head, t, kern = node_remove(h_head, t.prev)
-                        h_head, t, rule = node_remove(h_head, t)
-                        head, rule = node_insertafter(head, n, rule)
+                        h_head, t, rule_or_hlist = node_remove(h_head, t)
+                        head, rule_or_hlist = node_insertafter(head, n, rule_or_hlist)
                         head, kern = node_insertafter(head, n, kern)
                     else
                         t = t.prev

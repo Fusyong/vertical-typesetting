@@ -55,7 +55,11 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 
 \stopluacode
 
+% 竖排专名号
 \definebar[zhuanming][underbar][offset=-0.3, unit=em,rulethickness=0.3pt]
+% 竖排书名号
+\definebar[shuming][text=\lower\exheight\hbox{\infofont \rotate[rotation=-10]{\textasciitilde}}, repeat=yes, continue=yes]
+
 
 %%%%% 显式视觉调试信息 %%%%
 % \showboxes
@@ -68,7 +72,7 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 \chapter{屠龙之技}
 
 \dorecurse{20}{%
-《〈庄子〉寓言故事》：『\zhuanming{朱泙(pēng)漫}学屠龙于\zhuanming{支离益}，殚(dān)千金之家。三年技成，而无所用其巧！！』{\itxx （——《庄子·列御寇》， p125, f.f.）}【注释】（一）朱、支谐音；泙漫与离益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
+《\shuming{〈庄子〉寓言故事}》：『\zhuanming{朱泙(pēng)漫}学屠龙于\zhuanming{支离益}，殚(dān)千金之家。三年技成，而无所用其巧！！』{\itxx （——《\shuming{庄子·列御寇}》， p125, f.f.）}【注释】（一）朱、支谐音；泙漫与离益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
 }
 
 
