@@ -20,7 +20,6 @@ local node_setproperty = node.setproperty
 local node_setattribute = node.setattribute
 local node_getattribute = node.getattribute
 local node_hasattribute = node.hasattribute
-local node_traverseid = node.traverseid
 
 ---[[ 结点跟踪工具
 local function show_detail(n, label) 
@@ -108,58 +107,36 @@ function Moduledata.vertical_typeset.processmystuff(head)
     return head, true
 end
 
--- 找出条线，旋转
-local function search_rotated_hlist(n)
-    while n do
-        if n.id == hlist_id or n.id == vlist_id then
-
-            print("===============",n)
-            print(nodes.tosequence(n))
-        end
-        n = n.next
-    end
-end
-
-local function find_rotated_hlist(head)
-    local n = head
-    while n do
-        if node_hasattribute(n, 1) then
-            print("================")
-            print(nodes.tosequence(n.head))
-            local node = n.head
-            while node do
-                if node.id == rule_id then
-                    local box = node_new("hlist")
-                    box.list =  node_copy(node) --复制结点到新建的结点列表\hbox下
-                    box.orientation = 0x003 --以基线左端为圆心顺转3*90度，即左转90度
-                    n.head, box = node_insertafter(n.head, node, box)
-                    --删除原结点（注释后如果要观察前后相对关系，并配合\showboxes）
-                    n.head, node = node_remove(n.head, node, true)
-                end
-                node = node.next
-            end
-        end
-        if n.id == hlist_id or n.id == vlist_id then
-            find_rotated_hlist(n.head)
-        end
-        n = n.next
-    end
-end
-
 -- 把旋转过的列表中的bar rule移到外面，不旋转
 function Moduledata.vertical_typeset.get_out_bar(head)
-    -- \underbar{〈庄子〉寓言故事}
-    -- local box_list = head.head.head.head.head.next.next.head.next.next.next.next.next.next.next.head.next.next.head.next.next.next.next.next.next.next.head.next.next.head.next.next.head.next.next.next.next.next.next.head.next.next.next.next.head.head.head.next.next.next.next.next.next.head.next.head.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.head
-    -- local rule = box_list.next.next
-    -- print("attr", rule.attr)
-    -- print("width", rule.width)
-    -- print("height", rule.height)
-    -- print("depth", rule.depth)
-    -- print("left", rule.left)
-    -- print("right", rule.right)
-    -- print("dir", rule.dir)
-    -- print("transform", rule.transform)
-    -- print("data", rule.data)
+    -- 找出bar类条线rule，移动到旋转盒子外盒子外面
+    local function find_rotated_hlist(head)
+        local n = head
+        while n do
+            if node_hasattribute(n, 1) then
+                local h_head = n.head
+                local t = node.tail(h_head)
+                while t do
+                    -- 画线rule和罚点
+                    if t.id == rule_id and t.prev.id == kern_id then
+                        local kern
+                        local rule
+                        h_head, t, kern = node_remove(h_head, t.prev)
+                        h_head, t, rule = node_remove(h_head, t)
+                        head, rule = node_insertafter(head, n, rule)
+                        head, kern = node_insertafter(head, n, kern)
+                    else
+                        t = t.prev
+                    end
+                end
+            end
+            if n.id == hlist_id or n.id == vlist_id then
+                find_rotated_hlist(n.head)
+            end
+            n = n.next
+        end
+    end
+
     find_rotated_hlist(head)
 
     return head, true
