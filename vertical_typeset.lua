@@ -6,6 +6,7 @@ Moduledata.vertical_typeset = Moduledata.vertical_typeset or {}
 local glyph_id = nodes.nodecodes.glyph --node.id("glyph")
 local rule_id = nodes.nodecodes.rule
 local penalty_id = nodes.nodecodes.penalty
+local kern_id = nodes.nodecodes.kern
 local glue_id = nodes.nodecodes.glue
 local hlist_id = nodes.nodecodes.hlist
 local vlist_id = nodes.nodecodes.vlist
@@ -17,6 +18,9 @@ local node_new = node.new
 local node_remove = node.remove
 local node_setproperty = node.setproperty
 local node_setattribute = node.setattribute
+local node_getattribute = node.getattribute
+local node_hasattribute = node.hasattribute
+local node_traverseid = node.traverseid
 
 ---[[ 结点跟踪工具
 local function show_detail(n, label) 
@@ -62,29 +66,26 @@ local puncs_to_rotate = {
 function Moduledata.vertical_typeset.processmystuff(head)
     local n = head
     while n do --不在node.traverse_id()中增删结点，以免引用混乱
-        if n.id == rule_id then
-            print("===============",n)
-            print(nodes.tosequence(n))
-        end
         if n.id == glyph_id then
             local n_char = n.char
             local p_to_rotate = puncs_to_rotate[n_char]
             if  c_to_vertical(n_char) or p_to_rotate then
                 local l = node_new("hlist")
+                ---- 给盒子设置资产表，携带字符char(效率较低)
+                -- local p = node_getproperty(l)
+                -- if not p then
+                --     p = {}
+                --     node_setproperty(l, p)
+                -- end
+                -- p.char = n_char
+
+                -- 给盒子设置属性{1：n.char}（效率更高）
+                node_setattribute(l, 1, n_char)
+                
                 l.list =  node_copy(n) --复制结点到新建的结点列表\hbox下
                 local w, h, t = n.width, n.height, n.total
                 if p_to_rotate then
 
-                    ---- 给盒子设置资产表，携带字符char(效率较低)
-                    -- local p = node_getproperty(l)
-                    -- if not p then
-                    --     p = {}
-                    --     node_setproperty(l, p)
-                    -- end
-                    -- p.char = n_char
-
-                    -- 给盒子设置属性{1：n.char}（效率更高）
-                    node_setattribute(l, 1, n_char)
 
                     local pre_space = w * 0.15 --前留白，可以通过boundingbox等信息精确调整
                     l.width, l.height, l.depth = w, w, 0 --设置尺寸
@@ -118,8 +119,35 @@ local function search_rotated_hlist(n)
         n = n.next
     end
 end
-function Moduledata.vertical_typeset.s(head)
-    print("=================shipouts======================")
+
+local function find_rotated_hlist(head)
+    local n = head
+    while n do
+        if node_hasattribute(n, 1) then
+            print("================")
+            print(nodes.tosequence(n.head))
+            local node = n.head
+            while node do
+                if node.id == rule_id then
+                    local box = node_new("hlist")
+                    box.list =  node_copy(node) --复制结点到新建的结点列表\hbox下
+                    box.orientation = 0x003 --以基线左端为圆心顺转3*90度，即左转90度
+                    n.head, box = node_insertafter(n.head, node, box)
+                    --删除原结点（注释后如果要观察前后相对关系，并配合\showboxes）
+                    n.head, node = node_remove(n.head, node, true)
+                end
+                node = node.next
+            end
+        end
+        if n.id == hlist_id or n.id == vlist_id then
+            find_rotated_hlist(n.head)
+        end
+        n = n.next
+    end
+end
+
+-- 把旋转过的列表中的bar rule移到外面，不旋转
+function Moduledata.vertical_typeset.get_out_bar(head)
     -- \underbar{〈庄子〉寓言故事}
     -- local box_list = head.head.head.head.head.next.next.head.next.next.next.next.next.next.next.head.next.next.head.next.next.next.next.next.next.next.head.next.next.head.next.next.head.next.next.next.next.next.next.head.next.next.next.next.head.head.head.next.next.next.next.next.next.head.next.head.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.head
     -- local rule = box_list.next.next
@@ -132,15 +160,8 @@ function Moduledata.vertical_typeset.s(head)
     -- print("dir", rule.dir)
     -- print("transform", rule.transform)
     -- print("data", rule.data)
-    
-    local n = head
-    while n do
-        if n.id == hlist_id or n.id == vlist_id then
-            print("===============",n)
-            print(nodes.tosequence(n))
-        end
-        n = n.next
-    end
+    find_rotated_hlist(head)
+
     return head, true
 end
 
@@ -148,7 +169,7 @@ end
 function Moduledata.vertical_typeset.opt()
     --把`vertical_typeset.processmystuff`函数挂载到processors回调的normalizers类别中。
     nodes.tasks.appendaction("processors", "after", "Moduledata.vertical_typeset.processmystuff")
-    nodes.tasks.appendaction("shipouts", "after", "Moduledata.vertical_typeset.s")
+    nodes.tasks.appendaction("shipouts", "after", "Moduledata.vertical_typeset.get_out_bar")
     --nodes.tasks.enableaction("processors", "vertical_typeset.processmystuff")--启用
     --nodes.tasks.disableaction("processors", "vertical_typeset.processmystuff")--停用
 end
