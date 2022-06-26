@@ -21,6 +21,9 @@ local node_setattribute = node.setattribute
 local node_getattribute = node.getattribute
 local node_hasattribute = node.hasattribute
 
+local fonthashes = fonts.hashes
+local fontdata   = fonthashes.identifiers
+
 ---[[ 结点跟踪工具
 local function show_detail(n, label) 
     print(">>>>>>>>>"..label.."<<<<<<<<<<")
@@ -82,20 +85,23 @@ function Moduledata.vertical_typeset.processmystuff(head)
                 node_setattribute(l, 1, n_char)
                 
                 l.list =  node_copy(n) --复制结点到新建的结点列表\hbox下
-                local w, h, t = n.width, n.height, n.total
-                if p_to_rotate then
-
-
-                    local pre_space = w * 0.15 --前留白，可以通过boundingbox等信息精确调整
-                    l.width, l.height, l.depth = w, w, 0 --设置尺寸
-                    l.yoffset = w * 0.3 --楷体0.2, 宋体0.3
-                    l.hoffset = h + pre_space
-                else --汉字
-                    l.width, l.height, l.depth = w, w, 0 --设置尺寸
-                    l.yoffset = -w * 0.2 --楷体0.2, 宋体0.3
-                    l.hoffset = h + (w - t) / 2 --两侧平均留空
-                end
                 l.orientation = 0x003 --以基线左端为圆心顺转3*90度，即左转90度
+                local font = n.font
+                local desc = fontdata[font].descriptions[n_char]
+                local backwards = n.yscale * desc.height
+                local w, h, d, t = n.width, n.height, n.depth, n.total
+                l.width, l.height, l.depth = w, w, 0 --设置尺寸
+                local half_space = (w - t) / 2 --旋转后前后总空间的一般
+                l.hoffset = h + (w - t) / 2 --两侧平均留空
+                if p_to_rotate then
+                    l.yoffset = w * 0.3 --楷体0.2, 宋体0.3
+                    local pre_space = w * 0.15 --前留白，可以通过boundingbox等信息精确调整
+                    if half_space > pre_space then
+                        l.hoffset = h + pre_space
+                    end
+                else --汉字
+                    l.yoffset = -w * 0.2 --楷体0.2, 宋体0.3
+                end
                 head, l = node_insertafter(head, n, l)
                 --删除原结点（注释后如果要观察前后相对关系，并配合\showboxes）
                 head, n = node_remove(head, n, true)

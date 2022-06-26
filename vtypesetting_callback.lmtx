@@ -63,7 +63,7 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 
 %%%%% 显式视觉调试信息 %%%%
 % \showboxes
-% \showframe
+\showframe
 % \showmakeup
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
