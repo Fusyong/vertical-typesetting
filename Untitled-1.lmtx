@@ -46,7 +46,7 @@
 
 -- 使用直排模块
 local vertical_typeset = require("vertical_typeset.lua")
-vertical_typeset.opt()--moduledata.vertical_typese.opt()
+--vertical_typeset.opt()--moduledata.vertical_typese.opt()
 
 ---[[
 -- 使用本地中文标点压缩模块
@@ -67,7 +67,20 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \starttext
 
-\xbartwo{寓言}
+\startMPcode
+draw lmt_poisson [
+width
+= 40,
+height
+= 40,
+distance =
+1,
+count
+= 20,
+macro
+= "draw"
+] xsized 4cm ;
+\stopMPcode
 
 \stoptext
 
