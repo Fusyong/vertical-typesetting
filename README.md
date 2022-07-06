@@ -50,7 +50,8 @@
 * [x] 字符旋转、对齐
 * [x] [双行夹注/割注](https://github.com/Fusyong/jiazhu)
 * [x] 字右、字左注音
-* [ ] 在processors后调整glyph尺寸，在shipout后装盒旋转
+* [x] 改为在shipouts after中装盒旋转
+    [x] 缓存标点的偏置数据
 * [ ] 缓存旋转后的盒子（至少是标点盒子），并测试收益
 * [ ] 兼容现有bar功能
     * [x] 单层

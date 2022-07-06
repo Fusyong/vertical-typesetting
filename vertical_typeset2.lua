@@ -56,67 +56,18 @@ end
 
 --需要旋转的标点符号集
 local puncs_to_rotate = {
-    [0x3001] = {0.15, 0.5, 1.0, 0.5},   -- 、
-    [0xFF0C] = {0.15, 0.5, 1.0, 0.3},   -- ，
-    [0x3002] = {0.15, 0.6, 1.0, 0.3},   -- 。
-    [0xFF0E] = {0.15, 0.5, 1.0, 0.5},   -- ．
-    [0xFF1F] = {0.15, 0.5, 1.0, 0.5},   -- ？
-    [0xFF01] = {0.15, 0.5, 1.0, 0.5},   -- ！
-    [0xFF1A] = {0.15, 0.5, 1.0, -0.1},  -- ：
-    [0xFF1B] = {0.15, 0.5, 1.0, 0.5},   -- ；
+    [0x3001] = true,   -- 、
+    [0xFF0C] = true,   -- ，
+    [0x3002] = true,   -- 。
+    [0xFF0E] = true,   -- ．
+    [0xFF1F] = true,   -- ？
+    [0xFF01] = true,   -- ！
+    [0xFF1A] = true,  -- ：
+    [0xFF1B] = true,   -- ；
 }
 
 -- 标点符号偏置缓存{font = {char = {xoffset, yoffset}, ...} ...}
 local puncs_to_offset = {}
-
--- 旋转汉字和部分标点
-function Moduledata.vertical_typeset.processmystuff(head)
-    local n = head
-    while n do --不在node.traverse_id()中增删结点，以免引用混乱
-        if n.id == glyph_id then
-            local n_char = n.char
-            local p_to_rotate = puncs_to_rotate[n_char]
-            if  chars_to_vertical(n_char) or p_to_rotate then
-                local l = node_new("hlist")
-                ---- 给盒子设置资产表，携带字符char(效率较低)
-                -- local p = node_getproperty(l)
-                -- if not p then
-                --     p = {}
-                --     node_setproperty(l, p)
-                -- end
-                -- p.char = n_char
-
-                -- 给盒子设置属性{1：n.char}（效率更高）
-                node_setattribute(l, 1, n_char)
-                
-                l.list =  node_copy(n) --复制结点到新建的结点列表\hbox下
-                l.orientation = 0x003 --以基线左端为圆心顺转3*90度，即左转90度
-                local font = n.font
-                local desc = fonts_hashes_identifiers[font].descriptions[n_char]
-                local backwards = n.yscale * desc.height
-                local w, h, d, t = n.width, n.height, n.depth, n.total
-                l.width, l.height, l.depth = w, w, 0 --设置尺寸
-                local half_space = (w - t) / 2 --旋转后前后总空间的一般
-                l.hoffset = h + (w - t) / 2 --两侧平均留空
-                if p_to_rotate then
-                    l.yoffset = w * 0.3 --楷体0.2, 宋体0.3
-                    local pre_space = w * 0.15 --前留白，可以通过boundingbox等信息精确调整
-                    if half_space > pre_space then
-                        l.hoffset = h + pre_space
-                    end
-                else --汉字
-                    l.yoffset = -w * 0.2 --楷体0.2, 宋体0.3
-                end
-                head, l = node_insertafter(head, n, l)
-                --删除原结点（注释后如果要观察前后相对关系，并配合\showboxes）
-                head, n = node_remove(head, n, true)
-            end
-        end
-        n = n.next
-    end
-    node.flushlist(n)
-    return head, true
-end
 
 local function rotate_glyph_with_hlist(head, n, p_to_rotate)
 
@@ -231,6 +182,7 @@ function Moduledata.vertical_typeset.opt()
     --把`vertical_typeset.processmystuff`函数挂载到processors回调的normalizers类别中。
     -- nodes.tasks.appendaction("processors", "after", "Moduledata.vertical_typeset.processmystuff")
     nodes.tasks.appendaction("shipouts", "after", "Moduledata.vertical_typeset.rotate_all")
+    Moduledata.vertical_typeset.appended = true
     --nodes.tasks.enableaction("processors", "vertical_typeset.processmystuff")--启用
     --nodes.tasks.disableaction("processors", "vertical_typeset.processmystuff")--停用
 end

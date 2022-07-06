@@ -50,9 +50,11 @@ vertical_typeset.opt()
 
 ---[[
 -- 使用本地中文标点压缩模块
-local zhspuncs = require("../zhfonts/t-zhspuncs.lua")
+local zhspuncs = require("../zhfonts/t-zhspuncs2.lua")
 zhspuncs.opt()
 --]]
+
+
 
 \stopluacode
 % \textasciitilde
@@ -60,19 +62,16 @@ zhspuncs.opt()
 \definebar[xbartwo][text=\lower\exheight\hbox{\tidebar\rotate[rotation=-10]{～\kern-0.3em}}, repeat=yes, continue=yes]
 
 %%%%% 显式视觉调试信息 %%%%
-% \showboxes
+\showboxes
 \showframe
 % \showmakeup
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \starttext
 
-那\hbox{、}种\hbox{，}特\hbox{。}殊\hbox{．}字\hbox{？}体\hbox{！}的\hbox{：}罗\hbox{；}
+。。》』『
 
-\dorecurse{100}{%
-那：“好啊？？！！！”“good, 种…………——？！”的：罗\xbartwo{；马字母在 Unicode 2160-217F 之间。}这些字符历史上几乎没有在西方国家使用过，本来的目的是用在东亚的竖排文本中，防止像拉丁字母一样旋转。
 
-}
 
 \stoptext
 
