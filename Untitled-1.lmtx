@@ -45,12 +45,12 @@
 \startluacode
 
 -- 使用直排模块
-local vertical_typeset = require("vertical_typeset2.lua")
+local vertical_typeset = require("vertical_typeset.lua")
 vertical_typeset.opt()
 
 ---[[
 -- 使用本地中文标点压缩模块
-local zhspuncs = require("../zhfonts/t-zhspuncs2.lua")
+local zhspuncs = require("../zhfonts/t-zhspuncs.lua")
 zhspuncs.opt()
 --]]
 
@@ -69,7 +69,20 @@ zhspuncs.opt()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \starttext
 
-。。》』『
+！！！？？？”“
+
+！？！？！？”“
+
+“我”“我”“我”“我”“我”
+
+“我”、“我”、“我”、“我”、“我”
+
+
+。……
+
+…………
+
+————
 
 
 

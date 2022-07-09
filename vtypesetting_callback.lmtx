@@ -44,12 +44,12 @@
 \startluacode
 
 -- 使用直排模块
-local vertical_typeset = require("vertical_typeset2.lua")
+local vertical_typeset = require("vertical_typeset.lua")
 vertical_typeset.opt()--moduledata.vertical_typese.opt()
 
 ---[[
 -- 使用本地中文标点压缩模块
-local zhspuncs = require("../zhfonts/t-zhspuncs2.lua")
+local zhspuncs = require("../zhfonts/t-zhspuncs.lua")
 zhspuncs.opt() --moduledata.zhspuncs.opt()
 --]]
 
@@ -71,8 +71,10 @@ zhspuncs.opt() --moduledata.zhspuncs.opt()
 
 \chapter{屠龙之技}
 
+\shuming{《〈庄子〉寓言故事》}：“\zhuanming{朱泙(pēng)漫}学屠龙于\zhuanming{支离益}，殚(dān)千金之家。三年技成，而无所用其巧！！”{\itxx （——\shuming{《庄子·列御寇》}， p125, f.f.）}【注释】（一）朱、支谐音；泙“漫”“与”“离”益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
+
 \dorecurse{100}{%
-\shuming{《〈庄子〉寓言！故事》}：『\zhuanming{朱泙(pēng)漫}学屠龙于\zhuanming{支离益}，殚(dān)千金之家。三年技成，而无所用其巧！！』{\itxx （——\shuming{《庄子·列御寇》}， p125, f.f.）}【注释】（一）朱、支谐音；泙漫与离益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
+\shuming{《〈庄子〉寓言故事》}：『\zhuanming{朱泙(pēng)漫}学屠龙于\zhuanming{支离益}，殚(dān)千金之家。三年技成，而无所用其巧！！』{\itxx （——\shuming{《庄子·列御寇》}， p125, f.f.）}【注释】（一）朱、支谐音；泙漫与离益意近，水满而漫溢也．（二）无所用其巧：真的无用吗？怎么可能？？！！当参考他处，以庄解庄。……
 }
 
 
