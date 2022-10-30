@@ -11,9 +11,8 @@ Thumbs.db
 vertical-typesetting.code-workspace
 *.log
 *.tuc
-test.pdf
 test.lmtx
-zhfonts/
+temp/
 *.pdf
 
 # Vendors

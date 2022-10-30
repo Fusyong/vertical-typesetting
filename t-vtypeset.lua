@@ -1,32 +1,32 @@
---ah21 vertical_typeset.lua
 Moduledata = Moduledata or {}
-Moduledata.vertical_typeset = Moduledata.vertical_typeset or {}
+Moduledata.vtypeset = Moduledata.vtypeset or {}
 
 -- 本地化以提高运行效率
 local glyph_id = nodes.nodecodes.glyph --node.id("glyph")
-local rule_id = nodes.nodecodes.rule
-local penalty_id = nodes.nodecodes.penalty
-local kern_id = nodes.nodecodes.kern
-local glue_id = nodes.nodecodes.glue
 local hlist_id = nodes.nodecodes.hlist
 local vlist_id = nodes.nodecodes.vlist
 
 local node_copy = node.copy
-local node_getproperty = node.getproperty
 local node_insertafter = node.insertafter
-local node_insertbefore = node.insertbefore
 local node_new = node.new
 local node_remove = node.remove
-local node_setproperty = node.setproperty
-local node_setattribute = node.setattribute
-local node_getattribute = node.getattribute
-local node_hasattribute = node.hasattribute
 
 local fonts_hashes = fonts.hashes
 local fonts_hashes_identifiers   = fonts_hashes.identifiers
 
 
 --[[ 结点跟踪工具
+-- local rule_id = nodes.nodecodes.rule
+-- local kern_id = nodes.nodecodes.kern
+-- local node_getproperty = node.getproperty
+-- local node_insertbefore = node.insertbefore
+-- local node_setproperty = node.setproperty
+-- local node_setattribute = node.setattribute
+-- local node_getattribute = node.getattribute
+-- local node_hasattribute = node.hasattribute
+local penalty_id = nodes.nodecodes.penalty
+local glue_id = nodes.nodecodes.glue
+
 local function show_detail(n, label) 
     print(">>>>>>>>>"..label.."<<<<<<<<<<")
     print(nodes.toutf(n))
@@ -105,7 +105,7 @@ local function rotate_glyph_with_hlist(head, n, p_to_rotate)
             local char_font_desc = font_identifier.descriptions[n_char]
             local width = char_font_desc.width
             local height = char_font_desc.height
-            local depth = char_font_desc.depth
+            local depth = char_font_desc.depth or -char_font_desc.boundingbox[2]
             local font_ascender = font_parameters.ascender
             local x1 = char_font_desc.boundingbox[1]
             local x2 = char_font_desc.boundingbox[3]
@@ -138,7 +138,7 @@ local function rotate_glyph_with_hlist(head, n, p_to_rotate)
 end
 
 -- 旋转需要直排的字符
-function Moduledata.vertical_typeset.rotate_all(head)
+function Moduledata.vtypeset.rotate_all(head)
     -- 找出bar类条线rule，移动到旋转盒子外盒子外面
     local function find_rotated_hlist(list, is_top_level)
         
@@ -178,13 +178,13 @@ function Moduledata.vertical_typeset.rotate_all(head)
 end
 
 -- 挂载任务
-function Moduledata.vertical_typeset.opt()
-    --把`vertical_typeset.processmystuff`函数挂载到processors回调的normalizers类别中。
-    -- nodes.tasks.appendaction("processors", "after", "Moduledata.vertical_typeset.processmystuff")
-    nodes.tasks.appendaction("shipouts", "after", "Moduledata.vertical_typeset.rotate_all")
-    Moduledata.vertical_typeset.appended = true
-    --nodes.tasks.enableaction("processors", "vertical_typeset.processmystuff")--启用
-    --nodes.tasks.disableaction("processors", "vertical_typeset.processmystuff")--停用
+function Moduledata.vtypeset.append()
+    --把`vtypeset.processmystuff`函数挂载到processors回调的normalizers类别中。
+    -- nodes.tasks.appendaction("processors", "after", "Moduledata.vtypeset.processmystuff")
+    nodes.tasks.appendaction("shipouts", "after", "Moduledata.vtypeset.rotate_all")
+    Moduledata.vtypeset.appended = true --挂载标记 TODO 优化
+    --nodes.tasks.enableaction("processors", "vtypeset.processmystuff")--启用
+    --nodes.tasks.disableaction("processors", "vtypeset.processmystuff")--停用
 end
 
-return Moduledata.vertical_typeset
+return Moduledata.vtypeset
