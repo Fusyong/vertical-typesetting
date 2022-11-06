@@ -3,8 +3,8 @@
 %% 在processors类回调中干预断行；
 %% tex.linebreak()的用法；
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \setuppapersize[A4,landscape]
-\setuppapersize[A4]
+% \setuppapersize[A4]
+\setuppapersize[A4,landscape]
 
 % 中文配置
 \mainlanguage[cn]
@@ -15,9 +15,9 @@
 % 汉字字体配置
 \usetypescriptfile[mscore]
 \usebodyfont   [mschinese,20pt]
-% \usebodyfont   [mschinese-light,12pt]
-% \setupbodyfont [mschinese-literate,12pt]
-% \usebodyfont   [mschinese-literate,12pt]
+% \usebodyfont   [mschinese-light,20pt]
+% \setupbodyfont [mschinese-literate,20pt]
+% \usebodyfont   [mschinese-literate,20pt]
 % \definebodyfontenvironment[24pt]
 % \definebodyfontenvironment[18pt]
 % 定义字体
@@ -89,17 +89,19 @@
 \definebar[shumhs][text=\lower\exheight\hbox{\tidebars\rotate[rotation=-9]{\kern-0.16em～\kern-0.16em}}, repeat=yes, continue=no, offset=-0.25]
 
 %%%%%%%%%%%%% 使用模块 %%%%%%%%%%%%%
+
 % 竖排
 \usemodule[vtypeset]
 
 % 夹注
 % default: fontname=\tf, fontsize=10.5pt, interlinespace=0.08em
-\usemodule[jiazhu][fontname=\it, fontsize=10.5pt, interlinespace=0.08em]
+\usemodule[jiazhu][fontname=\sl, fontsize=10.5pt, interlinespace=0.08em]
 
 % 标点压缩
 % pattern: quanjiao(default), kaiming, banjiao, yuanyang, hangjian
 % spacequad: 0.5(default)
 \usemodule[zhpunc][pattern=kaiming, spacequad=0.5]
+
 
 
 %%%%% 显式视觉调试信息 %%%%
