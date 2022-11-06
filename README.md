@@ -1,17 +1,4 @@
-个人学习ConTeXt lmtx 与 LuaTEX，尝试实现中文竖排/直书功能
-
-## 内容
-
-1. 请拷贝[zhfonts](https://github.com/Fusyong/zhfonts)项目与本项目，并排放置两个项目文件夹（`zhfonts` `vertical-typesetting`下）。[zhfonts](https://github.com/Fusyong/zhfonts)是对[liyanrui/zhfonts](https://github.com/liyanrui/zhfonts)项目的改造，以支持竖排/直书标点压缩，谨致谢忱！
-1. vertical_typeset.lua是竖排/直书插件，**使用方式请参考[jiazhu](https://github.com/Fusyong/jiazhu)项目。**
-1. vtypesetting_callback.lmtx是测试与示例文件，[jiazhu](https://github.com/Fusyong/jiazhu)项目中的`大学章句.lmtx`更丰富。
-1. vtypesetting_box.lmtx是早期的功能探索示例文档，参见说明[ConTeXt LMTX的汉字竖排思路](https://blog.xiiigame.com/2022-01-14-ConTeXt-LMTX的汉字竖排思路/)
-
-## 现状
-
-![plot](https://blog.xiiigame.com/img/2022-02-15-ConTeXt-LMTX中文竖排插件/vtypesetting_callback_1.jpg)
-
-![plot](https://blog.xiiigame.com/img/2022-02-15-ConTeXt-LMTX中文竖排插件/vtypesetting_callback_2.jpg)
+ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 
 ## 安装和使用方法
 
@@ -49,6 +36,12 @@
     >```shell
     >> chcp 65001
     >```
+
+## 效果
+
+![plot](https://blog.xiiigame.com/img/2022-02-15-ConTeXt-LMTX中文竖排插件/vtypesetting_callback_1.jpg)
+
+![plot](https://blog.xiiigame.com/img/2022-02-15-ConTeXt-LMTX中文竖排插件/vtypesetting_callback_2.jpg)
 
 ## bug & TODO 
 
