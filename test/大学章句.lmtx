@@ -88,20 +88,21 @@
 \definefont[tidebars][name:stsong*default at 0.683\jiazhsize]
 \definebar[shumhs][text=\lower\exheight\hbox{\tidebars\rotate[rotation=-9]{\kern-0.16em～\kern-0.16em}}, repeat=yes, continue=no, offset=-0.25]
 
-%%%%%%%%%%%%% 使用模块 %%%%%%%%%%%%%
 
-% 竖排
-\usemodule[vtypeset]
+%%%%%%%%%%%%% 使用模块(夹注要在标点压缩后) %%%%%%%%%%%%%
+
+% 标点压缩
+% pattern: quanjiao(default), kaiming, banjiao, yuanyang
+% hangjian: false(default), ture
+% spacequad: 0.5(default)
+\usemodule[zhpunc][pattern=banjiao, spacequad=0.5, hangjian=false]
 
 % 夹注
 % default: fontname=\tf, fontsize=10.5pt, interlinespace=0.08em
-\usemodule[jiazhu][fontname=\sl, fontsize=10.5pt, interlinespace=0.08em]
+\usemodule[jiazhu][fontname=\tf, fontsize=10.5pt, interlinespace=0.08em]
 
-% 标点压缩
-% pattern: quanjiao(default), kaiming, banjiao, yuanyang, hangjian
-% spacequad: 0.5(default)
-\usemodule[zhpunc][pattern=kaiming, spacequad=0.5]
-
+% 竖排
+\usemodule[vtypeset]
 
 
 %%%%% 显式视觉调试信息 %%%%

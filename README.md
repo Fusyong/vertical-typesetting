@@ -8,9 +8,20 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 * 两种使用方法，在排版脚本前言中分别设置如下：
 
 ```latex
-%%%%%%%%%%%%% 通过入口文件使用 %%%%%%%%%%%%%
-\usemodule[vtypeset]
+%%%%%%%%%%%%% 使用模块(夹注要在标点压缩后) %%%%%%%%%%%%%
 
+% 标点压缩
+% pattern: quanjiao(default), kaiming, banjiao, yuanyang
+% hangjian: false(default), ture
+% spacequad: 0.5(default)
+\usemodule[zhpunc][pattern=banjiao, spacequad=0.5, hangjian=false]
+
+% 夹注
+% default: fontname=\tf, fontsize=10.5pt, interlinespace=0.08em
+% \usemodule[jiazhu][fontname=\tf, fontsize=10.5pt, interlinespace=0.08em]
+
+% 竖排
+\usemodule[vtypeset]
 ```
 
 ```lua
