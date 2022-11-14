@@ -5,7 +5,7 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 * 两种安装方法：
     1. 按[ConTeXt官方指南](https://wiki.contextgarden.net/Modules)安装模块文件：`t-vtypeset.mkiv`（入口）和`t-vtypeset.lua`，然后使用`context --generate`命令更新文件索引
     1. 将上述文件直接放在编译时的当前路径（通常即排版脚本所在的目录，在vscode环境中即项目根目录）；直接使用lua模块时不限定存放位置，但需要自行确保导入位置正确
-* 两种使用方法，在排版脚本前言中分别设置如下：
+* 使用时在排版脚本前言中设置如下：
 
 ```latex
 %%%%%%%%%%%%% 使用模块(夹注要在标点压缩后) %%%%%%%%%%%%%
@@ -22,16 +22,6 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 
 % 竖排
 \usemodule[vtypeset]
-```
-
-```lua
-%%%%%%%%%%%%% 直接使用lua模块 %%%%%%%%%%%%%
-\startluacode
----[[
-    local vertical_typeset = require("./t-vtypeset.lua")
-    vertical_typeset.append()
---]]
-\stopluacode
 ```
 
 可参考test文件夹下样例脚本中的设置（可能使用了夹注[jiazhu](https://github.com/Fusyong/jiazhu)、竖排[vtypeset](https://github.com/Fusyong/vertical-typesetting)、标点挤压[zhpunc](https://github.com/Fusyong/zhpunc)三个模块）。
