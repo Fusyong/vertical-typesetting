@@ -9,19 +9,36 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 
 ```latex
 %%%%%%%%%%%%% 使用模块(夹注要在标点压缩后) %%%%%%%%%%%%%
+% 
+% 标点压缩与支持
+% 
+\usemodule[zhpunc][pattern=quanjiao, spacequad=0.5, hangjian=false]
+% 
+% 四种标点压缩方案：全角、开明、半角、原样：
+%   pattern: quanjiao(default), kaiming, banjiao, yuanyang
+% 行间标点（转换`、，。．：！；？`到行间，pattern建议用banjiao）：
+%   hangjian: false(default), true
+% 加空宽度（角）：
+%   spacequad: 0.5(default)
+% 
+% 行间书名号和专名号（\bar实例）：
+%   \zhuanmh{专名}
+%   \shumh{书名}
 
-% 标点压缩
-% pattern: quanjiao(default), kaiming, banjiao, yuanyang
-% hangjian: false(default), ture
-% spacequad: 0.5(default)
-\usemodule[zhpunc][pattern=banjiao, spacequad=0.5, hangjian=false]
 
+% 
 % 夹注
-% default: fontname=\tf, fontsize=10.5pt, interlinespace=0.08em
-% \usemodule[jiazhu][fontname=\tf, fontsize=10.5pt, interlinespace=0.08em]
+% 
+\usemodule[jiazhu][fontname=tf, fontsize=10.5pt, interlinespace=0.08em]
+% default: fontname=tf, fontsize=10.5pt, interlinespace=0.08em(行间标点时约0.2em)
+% fontname和fontsize与\switchtobodyfont的对应参数一致
 
+
+% 
 % 竖排
+% 
 \usemodule[vtypeset]
+
 ```
 
 可参考test文件夹下样例脚本中的设置（可能使用了夹注[jiazhu](https://github.com/Fusyong/jiazhu)、竖排[vtypeset](https://github.com/Fusyong/vertical-typesetting)、标点挤压[zhpunc](https://github.com/Fusyong/zhpunc)三个模块）。
