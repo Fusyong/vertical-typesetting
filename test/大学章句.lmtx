@@ -76,28 +76,38 @@
 }
 
 
-%%%%%%%%%%%%% 使用模块(夹注要在标点压缩后) %%%%%%%%%%%%%
-
-% 四种标点压缩方案：全角、开明、半角、原样：
-% pattern: quanjiao(default), kaiming, banjiao, yuanyang
-% 行间标点（结合竖排插件使用，pattern建议用banjiao）：
-% hangjian: false(default), true
-% 加空宽度（角）：
-% spacequad: 0.5(default)
-\usemodule[zhpunc][pattern=banjiao, spacequad=0.5, hangjian=true]
-
-% 夹注
-% default: fontname=tf, fontsize=10.5pt, interlinespace=0.08em(行间标点时约0.2em)
-% fontname和fontsize与\switchtobodyfont的对应参数一致
-\usemodule[jiazhu][fontname=tf, fontsize=10.5pt, interlinespace=0.2em]
-
+%%%%%%%%%%%%% 使用模块(保持顺序) %%%%%%%%%%%%%
 % 竖排
 \usemodule[vtypeset]
+
+
+% 标点压缩与支持
+\usemodule[zhpunc][pattern=kaiming, spacequad=0.5, hangjian=false]
+% 
+% 四种标点压缩方案：全角、开明、半角、原样：
+%   pattern: quanjiao(default), kaiming, banjiao, yuanyang
+% 行间标点（转换`、，。．：！；？`到行间，pattern建议用banjiao）：
+%   hangjian: false(default), true
+% 加空宽度（角）：
+%   spacequad: 0.5(default)
+% 
+% 行间书名号和专名号（\bar实例）：
+%   \zhuanmh{专名}
+%   \shumh{书名}
+
+
+% 夹注
+\usemodule[jiazhu][fontname=tf, fontsize=10.5pt, interlinespace=0.2em]
+% default: fontname=tf, fontsize=10.5pt, interlinespace=0.08em(行间标点时约0.2em)
+% fontname和fontsize与\switchtobodyfont的对应参数一致
+% 夹注命令：
+%   \jiazh{夹注}
+
 
 %%%%% 显式视觉调试信息 %%%%
 % \showboxes
 % \showglyphs
-\showframe
+% \showframe
 % \showmakeup
 % \tracingnodes1 %1,2
 

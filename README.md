@@ -8,11 +8,13 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 * 使用时在排版脚本前言中设置如下：
 
 ```latex
-%%%%%%%%%%%%% 使用模块(夹注要在标点压缩后) %%%%%%%%%%%%%
-% 
+%%%%%%%%%%%%% 使用模块(保持顺序) %%%%%%%%%%%%%
+% 竖排
+\usemodule[vtypeset]
+
+
 % 标点压缩与支持
-% 
-\usemodule[zhpunc][pattern=quanjiao, spacequad=0.5, hangjian=false]
+\usemodule[zhpunc][pattern=kaiming, spacequad=0.5, hangjian=false]
 % 
 % 四种标点压缩方案：全角、开明、半角、原样：
 %   pattern: quanjiao(default), kaiming, banjiao, yuanyang
@@ -26,18 +28,12 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 %   \shumh{书名}
 
 
-% 
 % 夹注
-% 
-\usemodule[jiazhu][fontname=tf, fontsize=10.5pt, interlinespace=0.08em]
+\usemodule[jiazhu][fontname=tf, fontsize=10.5pt, interlinespace=0.2em]
 % default: fontname=tf, fontsize=10.5pt, interlinespace=0.08em(行间标点时约0.2em)
 % fontname和fontsize与\switchtobodyfont的对应参数一致
-
-
-% 
-% 竖排
-% 
-\usemodule[vtypeset]
+% 夹注命令：
+%   \jiazh{夹注}
 
 ```
 
