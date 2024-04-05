@@ -41,7 +41,7 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 
 ### 编译脚本
 
-1. 仅在[ConTeXt LMTX](https://wiki.contextgarden.net/Installation)环境测试，其他版本的ConTeXt当不支持。ConTeXt LMTX是与LuaMetaTeX(LuaTeX的后继者)配合使用的、最新的ConTeXt版本。调整后当可用于LuaTeX。可以使用`context --version && luametatex --version`命令查看你的环境版本。
+1. 仅在[ConTeXt LMTX](https://wiki.contextgarden.net/Installation)环境测试。ConTeXt LMTX是与LuaMetaTeX(LuaTeX的后继者)配合使用的、最新的ConTeXt版本。调整后当可用于LuaTeX。可以使用`context --version && luametatex --version`命令查看你的环境版本。
 1. 如下编译排版脚本：
     >```shell
     >> context 大学章句.lmtx
@@ -81,4 +81,5 @@ ConTeXt模块，在ConTeXt lmtx/LuaTEX环境中实现中文竖排/直书。
 * [ ] 更改旋转对齐规则（解决“一、灬”等字的问题）
 * [ ] 使PDF文件拷贝后的文字分行、分段正确
 * [ ] 管理属性设置，防止冲突（包括标点压缩、夹注个模块）
+* [ ] 模拟doublesided效果
 

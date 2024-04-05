@@ -35,7 +35,7 @@
 
 % 设置页码格式
 \setuppagenumbering[state=start,
-    alternative=singlesided,
+    alternative=singlesided, % singlesided 暂时无法设置doublesided，须手动模拟
     location={footer, center},
     style=\itx
 ]
