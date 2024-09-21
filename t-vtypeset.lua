@@ -51,7 +51,11 @@ end
 --判断是不是汉字（是否需要直排）
 local function chars_to_vertical(c)
     -- 常用的汉字编码范围，还有更多
-    return c >= 0x04E00 and c <= 0x09FFF
+    -- https://wiki.contextgarden.net/List_of_Unicode_blocks
+    return (c >= 0x04E00 and c <= 0x09FFF)
+        or (c >= 0x03400 and c <= 0x04DBF)
+        or (c >= 0x20000 and c <= 0x2A6DF)
+        or (c >= 0x00000 and c <= 0x00400)
 end
 
 --需要旋转的标点符号集
