@@ -1,6 +1,6 @@
 --ah21 vertical_typeset.lua
-Moduledata = Moduledata or {}
-Moduledata.vtypeset = Moduledata.vtypeset or {}
+Thirddata      = Thirddata      or {}
+Thirddata     .vtypeset = Thirddata     .vtypeset or {}
 
 -- 本地化以提高运行效率
 local glyph_id = nodes.nodecodes.glyph --node.id("glyph")
@@ -65,7 +65,7 @@ local puncs_to_rotate = {
 }
 
 -- 旋转汉字和部分标点
-function Moduledata.vtypeset.processmystuff(head)
+function Thirddata     .vtypeset.processmystuff(head)
     local n = head
     while n do --不在node.traverse_id()中增删结点，以免引用混乱
         if n.id == glyph_id then
@@ -114,7 +114,7 @@ function Moduledata.vtypeset.processmystuff(head)
 end
 
 -- 把旋转过的列表中的bar rule移到外面，不旋转
-function Moduledata.vtypeset.get_out_bar(head)
+function Thirddata     .vtypeset.get_out_bar(head)
     -- 找出bar类条线rule，移动到旋转盒子外盒子外面
     local function find_rotated_hlist(head)
         local n = head
@@ -151,12 +151,12 @@ function Moduledata.vtypeset.get_out_bar(head)
 end
 
 -- 挂载任务
-function Moduledata.vtypeset.opt()
+function Thirddata     .vtypeset.opt()
     --把`vertical_typeset.processmystuff`函数挂载到processors回调的normalizers类别中。
-    nodes.tasks.appendaction("processors", "after", "Moduledata.vertical_typeset.processmystuff")
-    nodes.tasks.appendaction("shipouts", "after", "Moduledata.vertical_typeset.get_out_bar")
+    nodes.tasks.appendaction("processors", "after", "Thirddata     .vertical_typeset.processmystuff")
+    nodes.tasks.appendaction("shipouts", "after", "Thirddata     .vertical_typeset.get_out_bar")
     --nodes.tasks.enableaction("processors", "vertical_typeset.processmystuff")--启用
     --nodes.tasks.disableaction("processors", "vertical_typeset.processmystuff")--停用
 end
 
-return Moduledata.vtypeset
+return Thirddata     .vtypeset
