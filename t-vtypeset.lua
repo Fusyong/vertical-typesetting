@@ -1,5 +1,5 @@
-Thirddata      = Thirddata      or {}
-Thirddata     .vtypeset = Thirddata     .vtypeset or {}
+Thirddata = Thirddata or {}
+Thirddata.vtypeset = Thirddata.vtypeset or {}
 
 -- 本地化以提高运行效率
 local glyph_id = nodes.nodecodes.glyph --node.id("glyph")
@@ -142,7 +142,7 @@ local function rotate_glyph_with_hlist(head, n, p_to_rotate)
 end
 
 -- 旋转需要直排的字符
-function Thirddata     .vtypeset.rotate_all(head)
+function Thirddata.vtypeset.rotate_all(head)
     -- 找出bar类条线rule，移动到旋转盒子外盒子外面
     local function find_rotated_hlist(list, is_top_level)
         
@@ -182,13 +182,13 @@ function Thirddata     .vtypeset.rotate_all(head)
 end
 
 -- 挂载任务
-function Thirddata     .vtypeset.append()
+function Thirddata.vtypeset.append()
     --把`vtypeset.processmystuff`函数挂载到processors回调的normalizers类别中。
-    -- nodes.tasks.appendaction("processors", "after", "Thirddata     .vtypeset.processmystuff")
-    nodes.tasks.appendaction("shipouts", "after", "Thirddata     .vtypeset.rotate_all")
-    Thirddata     .vtypeset.appended = true --挂载标记 TODO 优化
+    -- nodes.tasks.appendaction("processors", "after", "Thirddata.vtypeset.processmystuff")
+    nodes.tasks.appendaction("shipouts", "after", "Thirddata.vtypeset.rotate_all")
+    Thirddata.vtypeset.appended = true --挂载标记 TODO 优化
     --nodes.tasks.enableaction("processors", "vtypeset.processmystuff")--启用
     --nodes.tasks.disableaction("processors", "vtypeset.processmystuff")--停用
 end
 
-return Thirddata     .vtypeset
+return Thirddata.vtypeset
